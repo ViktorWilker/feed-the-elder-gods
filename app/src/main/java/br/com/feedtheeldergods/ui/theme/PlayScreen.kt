@@ -1,13 +1,15 @@
 package br.com.feedtheeldergods.ui.theme
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.material3.Text
 import br.com.feedtheeldergods.GameViewModel
 
 @Composable
@@ -18,53 +20,69 @@ fun PlayScreen(
     val god = viewModel.currentGod ?: return
 
     val cthulhuOptions = listOf(
-        "💥 Destroy a City",
-        "👁️ Haunt Dreams",
-        "🌊 Summon Storms",
-        "🌀 Drive Cultists Mad"
+        "💥" to "Destroy a City",
+        "👁️" to "Haunt Dreams",
+        "🌊" to "Summon Storms",
+        "🌀" to "Drive Cultists Mad"
     )
-
     val hasturOptions = listOf(
-        "🎭 Stage a Play",
-        "🤫 Whisper Madness",
-        "👑 Corrupt a King",
-        "🌀 Rewrite Reality"
+        "🎭" to "Stage a Play",
+        "🤫" to "Whisper Madness",
+        "👑" to "Corrupt a King",
+        "🌀" to "Rewrite Reality"
     )
-
-    val options = when(god.name) {
-        "Cthulhu" -> cthulhuOptions
-        "Hastur"  -> hasturOptions
-        else      -> cthulhuOptions
+    val options = when (god.name) {
+        "Hastur" -> hasturOptions
+        else     -> cthulhuOptions
     }
 
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+            .background(BgDeep)
     ) {
+        StarfieldBackground()
 
-        Text(
-            text = "what shall ${god.name} do for fun?",
-            fontSize = 24.sp,
-            textAlign = TextAlign.Center
-        )
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 28.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = "what shall ${god.name} do for fun?",
+                fontFamily = Cinzel,
+                fontWeight = FontWeight.SemiBold,
+                fontSize = 26.sp,
+                color = TextPrimary,
+                textAlign = TextAlign.Center,
+                letterSpacing = 1.sp,
+            )
+            Spacer(Modifier.height(8.dp))
+            Text(
+                text = "choose your chaos.",
+                fontFamily = CrimsonText,
+                fontSize = 14.sp,
+                color = TextMuted,
+                textAlign = TextAlign.Center,
+            )
+            Spacer(Modifier.height(36.dp))
 
-        Spacer(modifier = Modifier.height(32.dp))
-
-        options.forEachIndexed { index, label ->
-            Button(
-                onClick = {
-                    viewModel.play(index + 1)
-                    onDone()
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 4.dp)
-                    .height(52.dp)
-            ) {
-                Text(text = label, fontSize = 16.sp)
+            options.forEachIndexed { index, (icon, label) ->
+                EldritchButton(
+                    icon = icon,
+                    label = label,
+                    horizontal = true,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(58.dp),
+                    onClick = {
+                        viewModel.play(index + 1)
+                        onDone()
+                    }
+                )
+                Spacer(Modifier.height(10.dp))
             }
         }
     }

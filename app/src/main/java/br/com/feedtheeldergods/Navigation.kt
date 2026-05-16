@@ -11,7 +11,17 @@ import br.com.feedtheeldergods.ui.theme.GameOverScreen
 import br.com.feedtheeldergods.ui.theme.HubScreen
 import br.com.feedtheeldergods.ui.theme.PlayScreen
 import br.com.feedtheeldergods.ui.theme.RestScreen
+import br.com.feedtheeldergods.ui.theme.SoulFeedMinigame
 
+object Screen{
+    const val CHOOSE_GOD = "choose_god"
+    const val HUB = "hub"
+    const val FEED = "feed"
+    const val FEED_SOULS    = "feed_souls"
+    const val PLAY = "play"
+    const val REST = "rest"
+    const val GAME_OVER = "game_over"
+}
 @Composable
 fun Navigation() {
     val navController = rememberNavController()
@@ -19,70 +29,79 @@ fun Navigation() {
 
     NavHost(
         navController = navController,
-        startDestination = "choose_god"
+        startDestination = Screen.CHOOSE_GOD
     ) {
-        composable("choose_god") {
+        composable(Screen.CHOOSE_GOD) {
             ChooseGodScreen(
                 onGodSelected = { choice ->
                     viewModel.selectGod(choice)
-                    navController.navigate("hub")
+                    navController.navigate(Screen.HUB)
                 }
             )
         }
 
-        composable("hub") {
+        composable(Screen.HUB) {
             HubScreen(
                 viewModel = viewModel,
-                onFeed = { navController.navigate("feed") },
-                onPlay = { navController.navigate("play") },
-                onRest = { navController.navigate("rest") },
-                onBathe = {
-                    viewModel.bathe()
-                    if (viewModel.isGameOver) navController.navigate("game_over")
-                },
-                onBathroom = {
-                    viewModel.bathroom()
-                    if (viewModel.isGameOver) navController.navigate("game_over")
-                }
-            )
+                onFeed = { navController.navigate(Screen.FEED) },
+                onPlay = { navController.navigate(Screen.PLAY) },
+                onRest = { navController.navigate(Screen.REST) },
+                onBathe = {},
+            ) {
+                viewModel.bathe()
+                if (viewModel.isGameOver) navController.navigate(Screen.GAME_OVER)
+            }
         }
 
-        composable("feed") {
+        composable(Screen.FEED) {
             FeedScreen(
                 viewModel = viewModel,
+                onSouls = {navController.navigate(Screen.FEED_SOULS)},
                 onDone = {
-                    if (viewModel.isGameOver) navController.navigate("game_over")
-                    else navController.popBackStack()  // volta pro hub
+                    if (viewModel.isGameOver) navController.navigate(Screen.GAME_OVER)
+                    else navController.popBackStack()
                 }
             )
         }
 
-        composable("play") {
+        composable(Screen.PLAY) {
             PlayScreen(
                 viewModel = viewModel,
                 onDone = {
-                    if (viewModel.isGameOver) navController.navigate("game_over")
+                    if (viewModel.isGameOver) navController.navigate(Screen.GAME_OVER)
                     else navController.popBackStack()
                 }
             )
         }
 
-        composable("rest") {
+        composable(Screen.FEED_SOULS) {
+            SoulFeedMinigame(
+                viewModel = viewModel,
+                onDone = {
+                    if (viewModel.isGameOver) navController.navigate(Screen.GAME_OVER)
+                    else navController.navigate(Screen.HUB) {
+                        popUpTo(Screen.HUB) { inclusive = true }
+                    }
+                }
+            )
+        }
+
+        composable(Screen.REST) {
             RestScreen(
                 viewModel = viewModel,
                 onDone = {
-                    if (viewModel.isGameOver) navController.navigate("game_over")
+                    if (viewModel.isGameOver) navController.navigate(Screen.GAME_OVER)
                     else navController.popBackStack()
                 }
             )
         }
 
-        composable("game_over") {
+        composable(Screen.GAME_OVER) {
             GameOverScreen(
                 message = viewModel.deathMessage ?: "something went wrong...",
                 onRestart = {
-                    navController.navigate("choose_god") {
-                        popUpTo("choose_god") { inclusive = true }  // limpa o backstack
+                    navController.navigate(Screen.CHOOSE_GOD) {
+                        popUpTo(Screen.CHOOSE_GOD) { inclusive = true }
                     }
                 }
             )

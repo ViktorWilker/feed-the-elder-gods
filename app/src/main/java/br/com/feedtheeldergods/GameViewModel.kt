@@ -25,7 +25,6 @@ class GameViewModel : ViewModel() {
     var isGameOver by mutableStateOf(false)
         private set
 
-    // ChooseGodScreen
     fun selectGod(choice: Int) {
         currentGod = when (choice) {
             1 -> Cthulhu()
@@ -34,36 +33,36 @@ class GameViewModel : ViewModel() {
         }
         godSelected = true
     }
-
-    // HubScreen → FeedScreen
     fun feed(opc: Int) {
         val msg = currentGod?.Feed(opc) ?: return
         lastMessage = msg
         timeCycle()
     }
 
-    // HubScreen → PlayScreen
+    fun feedSouls(soulsCollected: Int) {
+        val msg = currentGod?.FeedSouls(soulsCollected) ?: return
+        lastMessage = msg
+        timeCycle()
+    }
+
     fun play(opc: Int) {
         val msg = currentGod?.ToPlay(opc) ?: return
         lastMessage = msg
         timeCycle()
     }
 
-    // HubScreen → RestScreen
     fun rest(hours: Int) {
         val msg = currentGod?.Rest(hours) ?: return
         lastMessage = msg
         timeCycle()
     }
 
-    // ação rápida, sem tela própria
     fun bathe() {
         val msg = currentGod?.Bathe() ?: return
         lastMessage = msg
         timeCycle()
     }
 
-    // ação rápida, sem tela própria
     fun bathroom() {
         val msg = currentGod?.Bathroom() ?: return
         lastMessage = msg

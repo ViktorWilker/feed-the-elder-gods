@@ -1,24 +1,34 @@
-// Creature.kt
+
 package Classes
 
 open class Creature(val name: String) {
-    var hunger = 0
+    var hunger = 80
         protected set(value){ field = value.coerceIn(0, 100) }
-    var happiness = 100
+    var happiness = 50
         protected set(value){ field = value.coerceIn(0, 100) }
-    var tiredness = 0
+    var tiredness = 20
         protected set(value){ field = value.coerceIn(0, 100) }
-    var bathroom = 0
+    var bathroom = 15
         protected set(value) { field = value.coerceIn(0, 100) }
-    var dirtiness = 0
+    var dirtiness = 10
         protected set(value) { field = value.coerceIn(0, 100) }
     var age = 1
         protected set
 
-    open fun Feed(opc: Int): String {
-        hunger -= 15
+    open fun Feed(reduction: Int): String {
+        hunger -= reduction
         bathroom += 20
         return ""
+    }
+
+    open fun FeedSouls(soulsCollected: Int): String {
+        val reduction = (soulsCollected * 3).coerceAtMost(60)
+        Feed(reduction)
+        return when {
+            soulsCollected >= 15 -> "Yesss... MORE. The hunger subsides... for now."
+            soulsCollected >= 8  -> "Acceptable. The hunger recedes."
+            else                 -> "Is that all? Pathetic. The hunger remains."
+        }
     }
 
     open fun ToPlay(opc: Int): String {
@@ -60,7 +70,7 @@ open class Creature(val name: String) {
             bathroom >= 100 -> "$name couldn't hold it anymore. The universe paid the price. You lose."
             dirtiness >= 100 -> "$name is now 90% eldritch slime. Even by $name standards, that's too much. You lose."
             age >= 50 -> "$name has existed long enough. The stars are right no more. You win!!"
-            else -> null  // null = ainda vivo
+            else -> null
         }
     }
 }

@@ -1,10 +1,16 @@
 package br.com.feedtheeldergods.ui.theme
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -14,45 +20,73 @@ fun GameOverScreen(
     message: String,
     onRestart: () -> Unit
 ) {
-    // detecta vitória pela mensagem
     val isVictory = message.contains("win")
 
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+            .background(BgDeep)
     ) {
+        StarfieldBackground()
 
-        Text(
-            text = if (isVictory) "✨ the stars are right ✨" else "💀 the void claims all 💀",
-            fontSize = 28.sp,
-            textAlign = TextAlign.Center
-        )
-
-        Spacer(modifier = Modifier.height(32.dp))
-
-        Card(modifier = Modifier.fillMaxWidth()) {
-            Text(
-                text = message,
-                modifier = Modifier.padding(16.dp),
-                fontSize = 16.sp,
-                textAlign = TextAlign.Center
-            )
-        }
-
-        Spacer(modifier = Modifier.height(48.dp))
-
-        Button(
-            onClick = onRestart,
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(56.dp)
+                .fillMaxSize()
+                .padding(horizontal = 28.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = if (isVictory) "adopt another god" else "try again",
-                fontSize = 18.sp
+                text = if (isVictory) "✨ the stars are right ✨" else "💀 the void claims all 💀",
+                fontFamily = Cinzel,
+                fontWeight = FontWeight.SemiBold,
+                fontSize = 28.sp,
+                color = TextPrimary,
+                textAlign = TextAlign.Center,
+                letterSpacing = 1.sp,
+                lineHeight = 38.sp,
+            )
+            Spacer(Modifier.height(8.dp))
+            Text(
+                text = if (isVictory) "you have pleased the ancient ones." else "the darkness was not enough.",
+                fontFamily = CrimsonText,
+                fontSize = 14.sp,
+                color = TextMuted,
+                textAlign = TextAlign.Center,
+            )
+            Spacer(Modifier.height(36.dp))
+
+            // caixa da mensagem
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(10.dp))
+                    .background(BgCard)
+                    .border(0.5.dp, BorderSubtle, RoundedCornerShape(10.dp))
+                    .padding(horizontal = 24.dp, vertical = 20.dp)
+            ) {
+                Text(
+                    text = message,
+                    fontFamily = CrimsonText,
+                    fontSize = 17.sp,
+                    color = TextSecond,
+                    fontStyle = FontStyle.Italic,
+                    textAlign = TextAlign.Center,
+                    lineHeight = 26.sp,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
+
+            Spacer(Modifier.height(48.dp))
+
+            EldritchButton(
+                icon = if (isVictory) "✨" else "🔁",
+                label = if (isVictory) "adopt another god" else "try again",
+                horizontal = true,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(58.dp),
+                onClick = onRestart
             )
         }
     }
