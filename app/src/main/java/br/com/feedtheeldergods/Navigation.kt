@@ -12,12 +12,16 @@ import br.com.feedtheeldergods.ui.theme.HubScreen
 import br.com.feedtheeldergods.ui.theme.PlayScreen
 import br.com.feedtheeldergods.ui.theme.RestScreen
 import br.com.feedtheeldergods.ui.theme.SoulFeedMinigame
+import br.com.feedtheeldergods.ui.theme.games.InsanityMinigame
+import br.com.feedtheeldergods.view_model.GameViewModel
 
 object Screen{
     const val CHOOSE_GOD = "choose_god"
     const val HUB = "hub"
     const val FEED = "feed"
     const val FEED_SOULS    = "feed_souls"
+    const val FEED_SANITY = "feed_sanity"
+    const val INSANITY_MM = "insanity_mm"
     const val PLAY = "play"
     const val REST = "rest"
     const val GAME_OVER = "game_over"
@@ -56,20 +60,46 @@ fun Navigation() {
         composable(Screen.FEED) {
             FeedScreen(
                 viewModel = viewModel,
-                onSouls = {navController.navigate(Screen.FEED_SOULS)},
-                onDone = {
+                onSouls   = { navController.navigate(Screen.FEED_SOULS) },
+                onSanity  = { navController.navigate(Screen.FEED_SANITY) },
+                onDone    = {
                     if (viewModel.isGameOver) navController.navigate(Screen.GAME_OVER)
                     else navController.popBackStack()
                 }
             )
         }
 
-        composable(Screen.PLAY) {
-            PlayScreen(
-                viewModel = viewModel,
+        composable(Screen.FEED_SANITY) {
+            InsanityMinigame(
+                gameViewModel = viewModel,
                 onDone = {
                     if (viewModel.isGameOver) navController.navigate(Screen.GAME_OVER)
+                    else navController.navigate(Screen.HUB) {
+                        popUpTo(Screen.HUB) { inclusive = true }
+                    }
+                }
+            )
+        }
+
+        composable(Screen.PLAY) {
+            PlayScreen(
+                viewModel  = viewModel,
+                onInsanity = { navController.navigate(Screen.INSANITY_MM) },
+                onDone     = {
+                    if (viewModel.isGameOver) navController.navigate(Screen.GAME_OVER)
                     else navController.popBackStack()
+                }
+            )
+        }
+
+        composable(Screen.INSANITY_MM) {
+            InsanityMinigame(
+                gameViewModel = viewModel,
+                onDone = {
+                    if (viewModel.isGameOver) navController.navigate(Screen.GAME_OVER)
+                    else navController.navigate(Screen.HUB) {
+                        popUpTo(Screen.HUB) { inclusive = true }
+                    }
                 }
             )
         }

@@ -1,12 +1,12 @@
-package br.com.feedtheeldergods
+package br.com.feedtheeldergods.view_model
 
-import androidx.lifecycle.ViewModel
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import Classes.Creature
 import Classes.Cthulhu
 import Classes.Hastur
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.lifecycle.ViewModel
 
 class GameViewModel : ViewModel() {
 
@@ -76,5 +76,11 @@ class GameViewModel : ViewModel() {
             deathMessage = death
             isGameOver = true
         }
+    }
+
+    fun feedSanity(drained: Int) {
+        val msg = currentGod?.FeedSanity(drained) ?: return
+        lastMessage = msg
+        timeCycle()
     }
 }

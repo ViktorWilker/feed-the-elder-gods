@@ -10,26 +10,27 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.material3.Text
-import br.com.feedtheeldergods.GameViewModel
+import br.com.feedtheeldergods.view_model.GameViewModel
 
 @Composable
 fun PlayScreen(
     viewModel: GameViewModel,
+    onInsanity: () -> Unit,
     onDone: () -> Unit
 ) {
     val god = viewModel.currentGod ?: return
 
     val cthulhuOptions = listOf(
-        "💥" to "Destroy a City",
-        "👁️" to "Haunt Dreams",
-        "🌊" to "Summon Storms",
-        "🌀" to "Drive Cultists Mad"
+        "💥" to "Destruir cidades",
+        "👁️" to "Assombrar sonhos",
+        "🌊" to "Invocar tempestades",
+        "🌀" to "Enlouquecer"
     )
     val hasturOptions = listOf(
-        "🎭" to "Stage a Play",
-        "🤫" to "Whisper Madness",
-        "👑" to "Corrupt a King",
-        "🌀" to "Rewrite Reality"
+        "🎭" to "Encenar uma peça",
+        "🤫" to "Sussurrar loucuras",
+        "👑" to "Corromper um rei",
+        "🌀" to "Reescrever realidade"
     )
     val options = when (god.name) {
         "Hastur" -> hasturOptions
@@ -51,7 +52,7 @@ fun PlayScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "what shall ${god.name} do for fun?",
+                text = "Como ${god.name} se divertirá hoje?",
                 fontFamily = Cinzel,
                 fontWeight = FontWeight.SemiBold,
                 fontSize = 26.sp,
@@ -61,7 +62,7 @@ fun PlayScreen(
             )
             Spacer(Modifier.height(8.dp))
             Text(
-                text = "choose your chaos.",
+                text = "Escolha seu caos.",
                 fontFamily = CrimsonText,
                 fontSize = 14.sp,
                 color = TextMuted,
@@ -74,12 +75,17 @@ fun PlayScreen(
                     icon = icon,
                     label = label,
                     horizontal = true,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(58.dp),
+                    modifier = Modifier.fillMaxWidth().height(58.dp),
                     onClick = {
-                        viewModel.play(index + 1)
-                        onDone()
+                        when (label) {
+                            "Assombrar sonhos",
+                            "Sussurrar loucuras"
+                                -> onInsanity()
+                            else -> {
+                                viewModel.play(index + 1)
+                                onDone()
+                            }
+                        }
                     }
                 )
                 Spacer(Modifier.height(10.dp))

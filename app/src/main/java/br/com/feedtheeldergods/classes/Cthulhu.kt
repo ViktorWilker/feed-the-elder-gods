@@ -1,16 +1,16 @@
-// Cthulhu.kt
+
 package Classes
 
 class Cthulhu : Creature("Cthulhu") {
     override fun Feed(opc: Int): String {
         super.Feed(opc)
         return when (opc) {
-            1 -> "Yummy yummy souls! Cthulhu wants more!!"
-            2 -> "Sanity? Overrated. Delicious though."
-            3 -> "Nightmares are like candy. Spooky candy."
-            4 -> "Dreams taste better when they're about puppies. Weird but true."
-            5 -> "Starlight! Cthulhu's favorite snack since before your sun existed."
-            6 -> "Cultists again... they really should stop volunteering for this."
+            1 -> "Alminhas gostosas! Cthulhu quer mais!!"
+            2 -> "Sanidade? Superestimada. Mas deliciosa."
+            3 -> "Pesadelos são como balas. Balas assustadoras."
+            4 -> "Sonhos ficam melhores quando são sobre cachorrinhos. Estranho mas verdade."
+            5 -> "Luz estelar! O petisco favorito de Cthulhu desde antes do seu sol existir."
+            6 -> "Cultistas de novo... eles realmente deveriam parar de se voluntariar pra isso."
             else -> "..."
         }
     }
@@ -18,30 +18,34 @@ class Cthulhu : Creature("Cthulhu") {
     override fun ToPlay(opc: Int): String {
         super.ToPlay(opc)
         return when (opc) {
-            1 -> "RAWR!! Cthulhu go SMASH!! ...okay that was fun."
-            2 -> "Boo! Hehe, their faces when they wake up screaming is priceless."
-            3 -> "Cthulhu made a big storm!! The fishies are scared. Cute."
-            4 -> "They're running in circles now. Cthulhu is basically a dog toy for cultists."
+            1 -> "RAAWR!! Cthulhu vai DESTRUIR!! ...tá, foi divertido."
+            2 -> "Buu! Hehe, as caras deles quando acordam gritando não tem preço."
+            3 -> "Cthulhu fez uma tempestade enorme!! Os peixinhos estão com medo."
+            4 -> "Estão rodando em círculos agora. Cthulhu é basicamente um brinquedo pra cultistas."
             else -> "..."
         }
     }
 
+
     override fun Rest(hours: Int): String {
         super.Rest(hours)
         return when {
-            hours <= 2 -> "Blub blub... Cthulhu sleepy now. Don't wake up or world goes boom."
+            hours <= 2 -> "Blub blub... Cthulhu com sono. Não acordar ou o mundo explode."
             hours <= 5 -> "Zzz... Ph'nglui... zzz... mglw'nafh... zzz..."
-            else -> "Floating in the void... so peaceful... no cultists here..."
+            else -> "Flutuando no vazio... tão tranquilo..."
         }
     }
 
+
     override fun Bathe(): String {
         super.Bathe()
-        return "Cthulhu hates baths. The cultists who suggested it are gone now."
+        return "Cthulhu odeia banho. Aqueles que sugeriram sumiram."
     }
+
 
     override fun Bathroom(): String {
         super.Bathroom()
-        return "The ocean got a little more eldritch today. Sorry fish."
+        return "O oceano ficou um pouco mais eldritchiano hoje. Desculpa, peixes."
     }
+
 }

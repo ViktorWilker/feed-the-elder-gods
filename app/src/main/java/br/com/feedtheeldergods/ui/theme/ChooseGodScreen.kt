@@ -37,7 +37,7 @@ fun ChooseGodScreen(onGodSelected: (Int) -> Unit) {
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = "choose the god you wish to adopt",
+                text = "Escolha um deus para adotar",
                 fontSize = 16.sp,
                 textAlign = TextAlign.Center,
                 color = TextSecond

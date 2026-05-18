@@ -23,7 +23,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import br.com.feedtheeldergods.GameViewModel
+import br.com.feedtheeldergods.view_model.GameViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.random.Random
@@ -52,7 +52,7 @@ fun SoulFeedMinigame(
             .build()
     }
     val soundId = remember {
-        soundPool.load(context, br.com.feedtheeldergods.R.raw.soul_bloop, 1)
+        soundPool.load(context, br.com.feedtheeldergods.R.raw.soul_bite, 1)
     }
     DisposableEffect(Unit) {
         onDispose { soundPool.release() }
@@ -111,7 +111,7 @@ fun SoulFeedMinigame(
             // header
             Spacer(Modifier.height(48.dp))
             Text(
-                text = "feed ${god.name}!",
+                text = "alimente ${god.name}!",
                 fontFamily = Cinzel,
                 fontWeight = FontWeight.SemiBold,
                 fontSize = 22.sp,
@@ -120,7 +120,7 @@ fun SoulFeedMinigame(
             )
             Spacer(Modifier.height(4.dp))
             Text(
-                text = "tap the souls before they escape",
+                text = "toque nas almas antes que fujam",
                 fontFamily = CrimsonText,
                 fontSize = 14.sp,
                 color = TextMuted,
@@ -233,9 +233,9 @@ fun SoulFeedMinigame(
                 ) {
                     Text(
                         text = when {
-                            score >= 15 -> "glorious feast!"
-                            score >= 8  -> "satisfying..."
-                            else        -> "pathetic offering."
+                            score >= 15 -> "um banquete glorioso!"
+                            score >= 8  -> "satisfatório..."
+                            else        -> "uma oferta patética."
                         },
                         fontFamily = Cinzel,
                         fontWeight = FontWeight.SemiBold,
@@ -246,7 +246,7 @@ fun SoulFeedMinigame(
                     )
                     Spacer(Modifier.height(12.dp))
                     Text(
-                        text = "$score souls consumed\nhunger −$hungerReduction",
+                        text = "$score almas consumidas\nfome −$hungerReduction",
                         fontFamily = CrimsonText,
                         fontSize = 17.sp,
                         color = TextSecond,
@@ -256,7 +256,7 @@ fun SoulFeedMinigame(
                     Spacer(Modifier.height(36.dp))
                     EldritchButton(
                         icon = "✔️",
-                        label = "return",
+                        label = "voltar",
                         horizontal = true,
                         modifier = Modifier
                             .fillMaxWidth()

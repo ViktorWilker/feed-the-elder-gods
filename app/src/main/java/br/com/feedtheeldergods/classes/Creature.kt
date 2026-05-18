@@ -12,7 +12,7 @@ open class Creature(val name: String) {
         protected set(value) { field = value.coerceIn(0, 100) }
     var dirtiness = 10
         protected set(value) { field = value.coerceIn(0, 100) }
-    var age = 1
+    var age = 49
         protected set
 
     open fun Feed(reduction: Int): String {
@@ -25,9 +25,9 @@ open class Creature(val name: String) {
         val reduction = (soulsCollected * 3).coerceAtMost(60)
         Feed(reduction)
         return when {
-            soulsCollected >= 15 -> "Yesss... MORE. The hunger subsides... for now."
-            soulsCollected >= 8  -> "Acceptable. The hunger recedes."
-            else                 -> "Is that all? Pathetic. The hunger remains."
+            soulsCollected >= 15 -> "Sim... MAIS. A fome cessa... por enquanto."
+            soulsCollected >= 8  -> "Aceitável. A fome diminui."
+            else                 -> "É só isso? Patético. A fome permanece."
         }
     }
 
@@ -41,18 +41,18 @@ open class Creature(val name: String) {
     open fun Rest(hours: Int): String {
         tiredness -= if (hours >= 8) tiredness else (hours * 10)
         happiness -= 5
-        return "Rested for $hours hours!"
+        return "Descansou por $hours horas!"
     }
 
     open fun Bathe(): String {
         dirtiness -= 30
         happiness += 5
-        return "$name is... tolerating the bath. Barely."
+        return "$name está... tolerando o banho. Por pouco."
     }
 
     open fun Bathroom(): String {
         bathroom -= 40
-        return "$name feels 40% lighter. Cosmically speaking."
+        return "$name se sente 40% mais leve. Cosmicamente falando."
     }
 
     fun TimeCycle() {
@@ -64,13 +64,24 @@ open class Creature(val name: String) {
 
     fun checkDeath(): String? {
         return when {
-            hunger >= 100 -> "$name has consumed everything... including itself. You lose."
-            happiness <= 0 -> "$name grows bored of this reality and leaves for another dimension. You lose."
-            tiredness >= 100 -> "$name has fallen into an eternal slumber. Even gods need rest. You lose."
-            bathroom >= 100 -> "$name couldn't hold it anymore. The universe paid the price. You lose."
-            dirtiness >= 100 -> "$name is now 90% eldritch slime. Even by $name standards, that's too much. You lose."
-            age >= 50 -> "$name has existed long enough. The stars are right no more. You win!!"
+            hunger >= 100 -> "$name consumiu tudo... inclusive a si mesmo. Você perdeu."
+            happiness <= 0 -> "$name se cansa desta realidade e parte para outra dimensão. Você perdeu."
+            tiredness >= 100 -> "$name caiu num sono eterno. Até deuses precisam descansar. Você perdeu."
+            bathroom >= 100 -> "$name não aguentou mais. O universo pagou o preço. Você perdeu."
+            dirtiness >= 100 -> "$name agora é 90% lodo eldritchiano. Até para os padrões de \$name, isso é demais. Você perdeu."
+            age >= 50 -> "$name existiu tempo suficiente. As estrelas não estão mais alinhadas. Você venceu!!"
             else -> null
+        }
+    }
+
+    open fun FeedSanity(drained: Int): String {
+        hunger -= (drained * 0.6f).toInt()
+        happiness += (drained * 0.3f).toInt()
+        bathroom += (drained * 0.2f).toInt()
+        return when {
+            drained >= 60 -> "Desespero delicioso. A mente deles se despedaçou lindamente."
+            drained >= 30 -> "Adequado. Os gritos foram um belo toque."
+            else          -> "Mal um petisco. Tente mais na próxima vez."
         }
     }
 }

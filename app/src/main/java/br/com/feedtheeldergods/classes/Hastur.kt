@@ -1,27 +1,28 @@
-// Hastur.kt
+
 package Classes
 
 class Hastur : Creature("Hastur") {
     override fun Feed(opc: Int): String {
         super.Feed(opc)
         return when (opc) {
-            1 -> "Souls! My favorite! Don't tell Cthulhu I said that."
-            2 -> "Teehee. They thought they were fine. They were not fine."
-            3 -> "Borrowed this nightmare. Will NOT be returning it."
-            4 -> "This dream had a plot twist. Hastur added that part."
-            5 -> "Starlight from Carcosa! Tastes like home and existential dread!"
-            6 -> "They said my name three times! I didn't ask them to but okay!"
+            1 -> "Almas! Meu favorito! Não conta pro Cthulhu que eu disse isso."
+            2 -> "Hehehe. Eles acharam que estavam bem. Não estavam."
+            3 -> "Peguei esse pesadelo emprestado. NÃO vou devolver."
+            4 -> "Esse sonho tinha um plot twist. Hastur adicionou essa parte."
+            5 -> "Luz estelar de Carcosa! Tem gosto de lar e pavor existencial!"
+            6 -> "Disseram meu nome três vezes! Não pedi mas tudo bem!"
             else -> "..."
         }
     }
 
+
     override fun ToPlay(opc: Int): String {
         super.ToPlay(opc)
         return when (opc) {
-            1 -> "The play was a hit! Nobody survived the standing ovation though."
-            2 -> "Pspsps... just one little whisper... hehe... there it goes."
-            3 -> "The king is acting weird now. Hastur helped with that."
-            4 -> "Hastur changed Tuesday. Nobody noticed yet. So funny."
+            1 -> "A peça foi um sucesso! Ninguém sobreviveu à ovação de pé."
+            2 -> "Psiu... só um sussurro... hehe... lá se foi."
+            3 -> "O rei tá agindo estranho agora. Hastur ajudou com isso."
+            4 -> "Hastur mudou a terça-feira. Ninguém percebeu ainda. Hilário."
             else -> "..."
         }
     }
@@ -29,19 +30,19 @@ class Hastur : Creature("Hastur") {
     override fun Rest(hours: Int): String {
         super.Rest(hours)
         return when {
-            hours <= 2 -> "Throne time!! The Yellow King needs his beauty sleep okay?"
-            hours <= 5 -> "Hastur is gone! ...or is he? (he is, but still spooky)"
-            else -> "Lake of Hali is so pretty... two suns setting... perfect nap spot."
+            hours <= 2 -> "Hora do trono!! O Rei Amarelo precisa do soninho tá bom?"
+            hours <= 5 -> "Hastur foi embora! ...ou não?"
+            else -> "O Lago de Hali é tão lindo... dois sóis se pondo... lugar perfeito pra um cochilo."
         }
     }
 
     override fun Bathe(): String {
         super.Bathe()
-        return "The Yellow King does NOT do baths. This is beneath him. ...fine."
+        return "O Rei Amarelo NÃO toma banho. Isso é humilhante... tá bom."
     }
 
     override fun Bathroom(): String {
         super.Bathroom()
-        return "Even cosmic horror has its biological obligations. Undignified."
+        return "Até o horror cósmico tem suas obrigações biológicas. Indigno."
     }
 }

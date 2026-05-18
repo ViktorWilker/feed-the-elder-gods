@@ -1,0 +1,154 @@
+{
+  "symbols": [
+    "água", "animal", "escuridão", "altura", "prisão",
+    "morte", "subterrâneo", "inseto", "multidão", "fogo",
+    "solidão", "tempo", "desconhecido", "criatura", "dor",
+    "caos", "espaço", "floresta", "julgamento", "figura"
+  ],
+
+  "fears": [
+    { "id": "shark",       "elements": ["água",        "animal"]       },
+    { "id": "buried",      "elements": ["subterrâneo", "prisão"]       },
+    { "id": "crowd",       "elements": ["multidão",    "caos"]         },
+    { "id": "aging",       "elements": ["tempo",       "morte"]        },
+    { "id": "stalker",     "elements": ["figura",      "escuridão"]    },
+    { "id": "space",       "elements": ["espaço",      "solidão"]      },
+    { "id": "fire",        "elements": ["fogo",        "dor"]          },
+    { "id": "spiders",     "elements": ["inseto",      "prisão"]       },
+    { "id": "falling",     "elements": ["altura",      "morte"]        },
+    { "id": "unknown",     "elements": ["desconhecido","criatura"]     },
+    { "id": "forest",      "elements": ["floresta",    "figura"]       },
+    { "id": "judgement",   "elements": ["julgamento",  "multidão"]     },
+    { "id": "disease",     "elements": ["dor",         "tempo"]        },
+    { "id": "deep_water",  "elements": ["água",        "escuridão"]    },
+    { "id": "abandonment", "elements": ["solidão",     "julgamento"]   },
+    { "id": "cave",        "elements": ["subterrâneo", "escuridão"]    },
+    { "id": "swarm",       "elements": ["inseto",      "caos"]         },
+    { "id": "void",        "elements": ["espaço",      "desconhecido"] },
+    { "id": "predator",    "elements": ["floresta",    "animal"]       },
+    { "id": "execution",   "elements": ["julgamento",  "morte"]        }
+  ],
+
+  "profiles": [
+    {
+      "name": "João", "age": 34,
+      "occupation": "Pescador aposentado",
+      "bio": "Parou de trabalhar depois de um acidente em alto mar. Não fala sobre o que viu. Dorme com a luz acesa e tem pesadelos frequentes.",
+      "fearId": "shark"
+    },
+    {
+      "name": "Mariana", "age": 28,
+      "occupation": "Arquiteta",
+      "bio": "Especialista em espaços abertos. Nunca aceita trabalhos em porões ou subsolo. Entrou em pânico numa vistoria de metrô e precisou ser resgatada.",
+      "fearId": "buried"
+    },
+    {
+      "name": "Rafael", "age": 41,
+      "occupation": "Professor universitário",
+      "bio": "Brilhante em sala de aula, mas evita eventos sociais a qualquer custo. Pede delivery até em datas comemorativas. Já desmaiou numa fila de banco.",
+      "fearId": "crowd"
+    },
+    {
+      "name": "Dona Célia", "age": 67,
+      "occupation": "Aposentada",
+      "bio": "Colecionadora de relógios que todos param na mesma hora. Não gosta de fotos. Diz que cada aniversário parece um funeral.",
+      "fearId": "aging"
+    },
+    {
+      "name": "Bruno", "age": 23,
+      "occupation": "Entregador",
+      "bio": "Trabalha só de dia. Jura que alguém o segue nas rotas noturnas. Instalou seis câmeras no apartamento e ainda não se sente seguro.",
+      "fearId": "stalker"
+    },
+    {
+      "name": "Dra. Letícia", "age": 39,
+      "occupation": "Astrônoma",
+      "bio": "Passou anos estudando o cosmos mas parou as pesquisas abruptamente. Diz que o universo é grande demais e que isso não é uma coisa boa.",
+      "fearId": "space"
+    },
+    {
+      "name": "Sérgio", "age": 45,
+      "occupation": "Bombeiro aposentado",
+      "bio": "Vinte anos apagando incêndios. As cicatrizes nas mãos contam histórias que ele se recusa a narrar. Não acende nem uma vela.",
+      "fearId": "fire"
+    },
+    {
+      "name": "Amanda", "age": 19,
+      "occupation": "Estudante de biologia",
+      "bio": "Adora animais grandes mas congela diante de qualquer coisa com mais de quatro patas. Uma vez trancou a professora num armário por causa de uma aranha.",
+      "fearId": "spiders"
+    },
+    {
+      "name": "Thiago", "age": 31,
+      "occupation": "Alpinista",
+      "bio": "Irônico: escala montanhas por esporte mas não consegue ficar perto da beira de uma sacada. Diz que a diferença é ter controle.",
+      "fearId": "falling"
+    },
+    {
+      "name": "Padre Antônio", "age": 58,
+      "occupation": "Clérigo",
+      "bio": "Trinta anos de fé inabalável até encontrar algo numa escavação arqueológica. Desde então, suas homilias falam muito sobre o que não deve ser nomeado.",
+      "fearId": "unknown"
+    },
+    {
+      "name": "Camila", "age": 26,
+      "occupation": "Fotógrafa de natureza",
+      "bio": "Percorreu florestas em quatro continentes. Parou depois de uma expedição no Acre da qual voltou sozinha e não explica o motivo.",
+      "fearId": "forest"
+    },
+    {
+      "name": "Dr. Henrique", "age": 52,
+      "occupation": "Juiz",
+      "bio": "Toda decisão que toma o mantém acordado por dias. Tem uma pasta com recortes de todos os casos em que pode ter errado. A pasta está quase cheia.",
+      "fearId": "judgement"
+    },
+    {
+      "name": "Fátima", "age": 44,
+      "occupation": "Enfermeira",
+      "bio": "Cuida de outros com dedicação total. Nega qualquer sintoma próprio, mesmo os óbvios. Nunca faz exames. Diz que prefere não saber.",
+      "fearId": "disease"
+    },
+    {
+      "name": "Seu Moacir", "age": 71,
+      "occupation": "Mergulhador aposentado",
+      "bio": "Mergulhou em mais de trinta países. Para tudo quando a visibilidade é zero. Diz que o que te mata no fundo não é a pressão — é não ver o que está do seu lado.",
+      "fearId": "deep_water"
+    },
+    {
+      "name": "Isabela", "age": 17,
+      "occupation": "Estudante",
+      "bio": "Popular na escola mas fica em pânico quando os amigos somem sem avisar. Manda mensagem a cada meia hora. Já ligou para a polícia três vezes sem necessidade.",
+      "fearId": "abandonment"
+    },
+    {
+      "name": "Rodrigo", "age": 36,
+      "occupation": "Geólogo",
+      "bio": "Especialista em cavernas, mas sempre trabalha em equipe e nunca fecha os olhos dentro delas. Diz que a escuridão debaixo da terra é diferente de qualquer outra.",
+      "fearId": "cave"
+    },
+    {
+      "name": "Professora Vânia", "age": 48,
+      "occupation": "Entomologista",
+      "bio": "Estuda insetos há vinte anos com frieza científica perfeita — desde que sejam individualmente. Uma infestação no laboratório a deixou de licença médica por três meses.",
+      "fearId": "swarm"
+    },
+    {
+      "name": "Cosmo", "age": 29,
+      "occupation": "Filósofo e podcaster",
+      "bio": "Faz perguntas sobre a existência por hobby até perceber que algumas não têm resposta. Parou de gravar depois do episódio 47. O episódio 47 foi deletado.",
+      "fearId": "void"
+    },
+    {
+      "name": "Lurdes", "age": 55,
+      "occupation": "Guia de ecoturismo",
+      "bio": "Conhece cada trilha da região como a palma da mão. Nunca guia grupos depois das 17h. Diz que a floresta muda quando escurece e que os animais sabem disso.",
+      "fearId": "predator"
+    },
+    {
+      "name": "Major Dirceu", "age": 63,
+      "occupation": "Militar reformado",
+      "bio": "Trinta anos de carreira sem uma mancha. Recusou a medalha de honra sem dar explicações. Ainda acorda às 5h mas não consegue olhar no espelho enquanto se barbeia.",
+      "fearId": "execution"
+    }
+  ]
+}

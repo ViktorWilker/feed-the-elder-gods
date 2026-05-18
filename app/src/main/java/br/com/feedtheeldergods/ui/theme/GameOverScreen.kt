@@ -20,7 +20,7 @@ fun GameOverScreen(
     message: String,
     onRestart: () -> Unit
 ) {
-    val isVictory = message.contains("win")
+    val isVictory = message.contains("venceu")
 
     Box(
         modifier = Modifier
@@ -37,7 +37,7 @@ fun GameOverScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = if (isVictory) "✨ the stars are right ✨" else "💀 the void claims all 💀",
+                text = if (isVictory) "✨ as estrelas estão alinhadas ✨" else "💀 o vazio consome tudo 💀",
                 fontFamily = Cinzel,
                 fontWeight = FontWeight.SemiBold,
                 fontSize = 28.sp,
@@ -48,7 +48,7 @@ fun GameOverScreen(
             )
             Spacer(Modifier.height(8.dp))
             Text(
-                text = if (isVictory) "you have pleased the ancient ones." else "the darkness was not enough.",
+                text = if (isVictory) "você agradou os antigos." else "a escuridão não foi suficiente.",
                 fontFamily = CrimsonText,
                 fontSize = 14.sp,
                 color = TextMuted,
@@ -81,7 +81,7 @@ fun GameOverScreen(
 
             EldritchButton(
                 icon = if (isVictory) "✨" else "🔁",
-                label = if (isVictory) "adopt another god" else "try again",
+                label = if (isVictory) "adotar outro deus" else "tentar novamente",
                 horizontal = true,
                 modifier = Modifier
                     .fillMaxWidth()

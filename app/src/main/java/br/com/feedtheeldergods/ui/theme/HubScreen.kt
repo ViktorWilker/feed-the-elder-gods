@@ -28,7 +28,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import br.com.feedtheeldergods.GameViewModel
+import br.com.feedtheeldergods.view_model.GameViewModel
 import kotlin.math.sin
 
 //  HubScreen
@@ -46,8 +46,8 @@ fun HubScreen(
 
     val epitaph = remember(god.name) {
         when (god.name) {
-            "Cthulhu" -> "Dreamer of the Deep"
-            "Hastur"  -> "The King in Yellow"
+            "Cthulhu" -> "Sonhador das Profundezas"
+            "Hastur"  -> "O Rei de Amarelo"
             else      -> "Elder God"
         }
     }
@@ -60,12 +60,12 @@ fun HubScreen(
     ) {
         StarfieldBackground()
 
-        // conteúdo de cima — flui naturalmente, sem ocupar tela toda
+
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 24.dp)
-                .padding(top = 20.dp, bottom = 160.dp), // bottom reserva espaço pros botões
+                .padding(top = 20.dp, bottom = 160.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
@@ -100,11 +100,11 @@ fun HubScreen(
             Spacer(Modifier.height(24.dp))
 
             // stats
-            EldritchStatBar(label = "Hunger",    value = god.hunger,    gradient = GradHunger,   icon = "🍖", dangerWhenHigh = true)
-            EldritchStatBar(label = "Happiness", value = god.happiness, gradient = GradHappy,    icon = "😊", dangerWhenHigh = false)
-            EldritchStatBar(label = "Tiredness", value = god.tiredness, gradient = GradTired,    icon = "😴", dangerWhenHigh = true)
-            EldritchStatBar(label = "Bathroom",  value = god.bathroom,  gradient = GradBathroom, icon = "🚽", dangerWhenHigh = true)
-            EldritchStatBar(label = "Dirtiness", value = god.dirtiness, gradient = GradDirt,     icon = "🧼", dangerWhenHigh = true)
+            EldritchStatBar(label = "Fome",    value = god.hunger,    gradient = GradHunger,   icon = "🍖", dangerWhenHigh = true)
+            EldritchStatBar(label = "Felicidade", value = god.happiness, gradient = GradHappy,    icon = "😊", dangerWhenHigh = false)
+            EldritchStatBar(label = "Cansaço", value = god.tiredness, gradient = GradTired,    icon = "😴", dangerWhenHigh = true)
+            EldritchStatBar(label = "Banheiro",  value = god.bathroom,  gradient = GradBathroom, icon = "🚽", dangerWhenHigh = true)
+            EldritchStatBar(label = "Sujeira", value = god.dirtiness, gradient = GradDirt,     icon = "🧼", dangerWhenHigh = true)
 
             if (viewModel.lastMessage.isNotEmpty()) {
                 Spacer(Modifier.height(16.dp))
@@ -123,9 +123,9 @@ fun HubScreen(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                EldritchButton(icon = "🍖", label = "Feed",  modifier = Modifier.weight(1f), onClick = onFeed)
-                EldritchButton(icon = "🎮", label = "Play",  modifier = Modifier.weight(1f), onClick = onPlay)
-                EldritchButton(icon = "💤", label = "Rest",  modifier = Modifier.weight(1f), onClick = onRest)
+                EldritchButton(icon = "🍖", label = "Alimentar",  modifier = Modifier.weight(1f), onClick = onFeed)
+                EldritchButton(icon = "🎮", label = "Jogar",  modifier = Modifier.weight(1f), onClick = onPlay)
+                EldritchButton(icon = "💤", label = "Descansar",  modifier = Modifier.weight(1f), onClick = onRest)
             }
 
             Spacer(Modifier.height(8.dp))
@@ -134,8 +134,8 @@ fun HubScreen(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                EldritchButton(icon = "🛁", label = "Bathe",    modifier = Modifier.weight(1f), onClick = onBathe)
-                EldritchButton(icon = "🚽", label = "Bathroom", modifier = Modifier.weight(1f), onClick = onBathroom)
+                EldritchButton(icon = "🛁", label = "Banho",    modifier = Modifier.weight(1f), onClick = onBathe)
+                EldritchButton(icon = "🚽", label = "Banheiro", modifier = Modifier.weight(1f), onClick = onBathroom)
             }
         }
     }
@@ -198,7 +198,7 @@ fun AgeBar(age: Int, maxAge: Int) {
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         Text(
-            text = "AGE",
+            text = "IDADE",
             fontFamily = Cinzel,
             fontSize = 13.sp,
             color = TextMuted,
@@ -368,7 +368,7 @@ fun EldritchButton(
     icon: String,
     label: String,
     modifier: Modifier = Modifier,
-    horizontal: Boolean = false,  // ← novo parâmetro
+    horizontal: Boolean = false,
     onClick: () -> Unit,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
@@ -394,7 +394,7 @@ fun EldritchButton(
         Text(
             text = label.uppercase(),
             fontFamily = Cinzel,
-            fontSize = if (horizontal) 15.sp else 11.sp,  // ← maior no modo horizontal
+            fontSize = if (horizontal) 15.sp else 11.sp,
             color = TextSecond,
             letterSpacing = 1.sp,
         )
@@ -453,11 +453,11 @@ private fun HubScreenPreview() {
             Spacer(Modifier.height(20.dp))
             AgeBar(age = 9, maxAge = 50)
             Spacer(Modifier.height(24.dp))
-            EldritchStatBar(label = "Hunger",    value = 35, gradient = GradHunger,   icon = "🍖")
-            EldritchStatBar(label = "Happiness", value = 72, gradient = GradHappy,    icon = "😊")
-            EldritchStatBar(label = "Tiredness", value = 20, gradient = GradTired,    icon = "😴")
-            EldritchStatBar(label = "Bathroom",  value = 50, gradient = GradBathroom, icon = "🚽")
-            EldritchStatBar(label = "Dirtiness", value = 15, gradient = GradDirt,     icon = "🧼")
+            EldritchStatBar(label = "Fome",    value = 35, gradient = GradHunger,   icon = "🍖")
+            EldritchStatBar(label = "Felicidade", value = 72, gradient = GradHappy,    icon = "😊")
+            EldritchStatBar(label = "Cansaço", value = 20, gradient = GradTired,    icon = "😴")
+            EldritchStatBar(label = "Banheiro",  value = 50, gradient = GradBathroom, icon = "🚽")
+            EldritchStatBar(label = "Sujeira", value = 15, gradient = GradDirt,     icon = "🧼")
             Spacer(Modifier.height(16.dp))
             EldritchMessageBox(message = "Yummy yummy souls! Cthulhu wants more!!")
         }
@@ -470,14 +470,14 @@ private fun HubScreenPreview() {
                 .padding(bottom = 20.dp)
         ) {
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                EldritchButton(icon = "🍖", label = "Feed",  modifier = Modifier.weight(1f), onClick = {})
-                EldritchButton(icon = "🎮", label = "Play",  modifier = Modifier.weight(1f), onClick = {})
-                EldritchButton(icon = "💤", label = "Rest",  modifier = Modifier.weight(1f), onClick = {})
+                EldritchButton(icon = "🍖", label = "Alimentar",  modifier = Modifier.weight(1f), onClick = {})
+                EldritchButton(icon = "🎮", label = "Jogar",  modifier = Modifier.weight(1f), onClick = {})
+                EldritchButton(icon = "💤", label = "Descansar",  modifier = Modifier.weight(1f), onClick = {})
             }
             Spacer(Modifier.height(8.dp))
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                EldritchButton(icon = "🛁", label = "Bathe",    modifier = Modifier.weight(1f), onClick = {})
-                EldritchButton(icon = "🚽", label = "Bathroom", modifier = Modifier.weight(1f), onClick = {})
+                EldritchButton(icon = "🛁", label = "Banho",    modifier = Modifier.weight(1f), onClick = {})
+                EldritchButton(icon = "🚽", label = "Banheiro", modifier = Modifier.weight(1f), onClick = {})
             }
         }
     }

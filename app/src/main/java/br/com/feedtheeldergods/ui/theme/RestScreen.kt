@@ -16,7 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import br.com.feedtheeldergods.GameViewModel
+import br.com.feedtheeldergods.view_model.GameViewModel
 
 @Composable
 fun RestScreen(
@@ -42,7 +42,7 @@ fun RestScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "how long shall ${god.name} rest?",
+                text = "Por quanto tempo ${god.name} vai descansar?",
                 fontFamily = Cinzel,
                 fontWeight = FontWeight.SemiBold,
                 fontSize = 26.sp,
@@ -52,7 +52,7 @@ fun RestScreen(
             )
             Spacer(Modifier.height(8.dp))
             Text(
-                text = "even gods need sleep.",
+                text = "Até deuses precisam dormir.",
                 fontFamily = CrimsonText,
                 fontSize = 14.sp,
                 color = TextMuted,
@@ -79,7 +79,7 @@ fun RestScreen(
                         textAlign = TextAlign.Center,
                     )
                     Text(
-                        text = if (hours.toInt() == 1) "hour" else "hours",
+                        text = if (hours.toInt() == 1) "hora" else "horas",
                         fontFamily = CrimsonText,
                         fontSize = 18.sp,
                         color = TextMuted,
@@ -88,7 +88,7 @@ fun RestScreen(
                     if (isFullyRested) {
                         Spacer(Modifier.height(4.dp))
                         Text(
-                            text = "✨ fully rested",
+                            text = "✨ totalmente descansado",
                             fontFamily = CrimsonText,
                             fontSize = 14.sp,
                             color = TextSecond,
@@ -122,7 +122,7 @@ fun RestScreen(
 
             EldritchButton(
                 icon = "💤",
-                label = "rest now",
+                label = "descansar",
                 horizontal = true,
                 modifier = Modifier
                     .fillMaxWidth()
